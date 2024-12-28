@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ŠIFRA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 24px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 150px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #poruka {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function proveriSifru() {
+            const tacnaSifra = "5467"; // Ovde unesite tačnu petocifrenu šifru
+            const unesenaSifra = document.getElementById("sifra").value;
+            const poruka = document.getElementById("poruka");
+
+            if (unesenaSifra === tacnaSifra) {
+                poruka.textContent = "Tačno! Šifra je ispravna.";
+                poruka.style.color = "green";
+            } else if (unesenaSifra.length !== 5) {
+                poruka.textContent = "Šifra mora biti četvorocifrena!";
+                poruka.style.color = "orange";
+            } else {
+                let rezultat = "Netačna šifra! ";
+                for (let i = 0; i < 5; i++) {
+                    if (unesenaSifra[i] !== tacnaSifra[i]) {
+                        rezultat += `(${i + 1}. cifra nije ispravna) `;
+                    }
+                }
+                poruka.textContent = rezultat;
+                poruka.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Unesite četvorocifrenu šifru</h1>
+    <input type="text" id="sifra" maxlength="5" placeholder="X X X X" />
+    <button onclick="proveriSifru()">Proveri</button>
+    <p id="poruka"></p>
+</body>
+</html>
